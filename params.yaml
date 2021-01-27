@@ -1,0 +1,11 @@
+prepare:
+  split: 0.21
+  seed: 20170428
+
+featurize:
+  multiplier_1: 2.1
+  bias_1: 1.1
+
+train:
+  seed: 20170428
+  c: 1.1
