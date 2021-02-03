@@ -47,12 +47,12 @@ train:
     size: 1491
   params:
     params.yaml:
-      train.n_estimators: 100
+      train.n_estimators: 3
       train.seed: 20170428
   outs:
   - path: model.pkl
-    md5: 437d1877c768c718ee3e3943109e3e8c
-    size: 98650
+    md5: a2c54bbf14177bc0051a740f1a70cb49
+    size: 4323
 evaluate:
   cmd: python src/evaluate.py -mfp model.pkl -ffp data/features -sfp scores.json -pfp
     prc.json
@@ -62,15 +62,15 @@ evaluate:
     size: 2946
     nfiles: 2
   - path: model.pkl
-    md5: 437d1877c768c718ee3e3943109e3e8c
-    size: 98650
+    md5: a2c54bbf14177bc0051a740f1a70cb49
+    size: 4323
   - path: src/evaluate.py
     md5: 7738e96f7d814535b89c187f54b47657
     size: 1928
   outs:
   - path: prc.json
-    md5: 5c2c0d935bc2ae1453ec8d7cda2b4d4e
-    size: 269
+    md5: 34b67eb06ce43676d3be450ca366469c
+    size: 160
   - path: scores.json
-    md5: 0b1654dd82e47b728c2180c0dba1d976
-    size: 12
+    md5: 7645a25c80492bdb79e4faaa64d353bd
+    size: 27

@@ -34,10 +34,7 @@ dvc run -n train \
           python src/train.py -i data/features -o model.pkl
 ```
 
-## run reproduce experiment
-```dvc repro```
-
-## run evaluate
+## add evaluate step
 ```
 dvc run -n evaluate \
           -d src/evaluate.py -d model.pkl -d data/features \
@@ -46,3 +43,15 @@ dvc run -n evaluate \
           python src/evaluate.py -mfp model.pkl -ffp data/features \
                 -sfp scores.json -pfp prc.json
 ```
+
+## run reproduce experiment after change something
+```dvc repro```
+
+## To see how params in the workspace differ vs. the last commit
+```dvc params diff```
+
+## To see how metrics in the workspace differ vs. the last commit
+````dvc metrics diff````
+
+## To compare precision recall curves with a single command
+```dvc plots diff -x recall -y precision```
