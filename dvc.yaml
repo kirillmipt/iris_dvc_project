@@ -25,7 +25,20 @@ stages:
     - data/features
     - src/train.py
     params:
-    - train.c
+    - train.n_estimators
     - train.seed
     outs:
     - model.pkl
+  evaluate:
+    cmd: python src/evaluate.py -mfp model.pkl -ffp data/features -sfp scores.json
+      -pfp prc.json
+    deps:
+    - data/features
+    - model.pkl
+    - src/evaluate.py
+    metrics:
+    - scores.json:
+        cache: false
+    plots:
+    - prc.json:
+        cache: false

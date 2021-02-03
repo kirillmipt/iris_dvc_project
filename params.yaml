@@ -8,4 +8,4 @@ featurize:
 
 train:
   seed: 20170428
-  c: 1.1
+  n_estimators: 100

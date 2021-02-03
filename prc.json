@@ -1,0 +1,1 @@
+{"prc": [{"precision": 1.0, "recall": 1.0, "threshold": 0.93}, {"precision": 1.0, "recall": 0.9090909090909091, "threshold": 0.98}, {"precision": 1.0, "recall": 0.7272727272727273, "threshold": 0.99}, {"precision": 1.0, "recall": 0.6363636363636364, "threshold": 1.0}]}

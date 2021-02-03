@@ -1,18 +1,18 @@
 import argparse
 import os
 import pickle
-from sklearn import svm
+from sklearn.ensemble import RandomForestClassifier
 import yaml
 import pandas as pd
 
 
-def train(input_file_path_train, out_model_file_path, params_seed, params_c):
+def train(input_file_path_train, out_model_file_path, params_seed, params_n_estimators):
 
     df_train = pd.read_csv(input_file_path_train)
     x_train = df_train.drop(columns=['Species'])
     y_train = df_train['Species']
 
-    model = svm.SVC()
+    model = RandomForestClassifier(random_state=params_seed, n_estimators=params_n_estimators)
     model.fit(x_train, y_train)
 
     with open(out_model_file_path, 'wb') as fd:
@@ -34,14 +34,14 @@ if __name__ == '__main__':
     # get params
     params = yaml.safe_load(open('params.yaml'))['train']
     params_seed = params['seed']
-    params_c = params['c']
+    params_n_estimators = params['n_estimators']
 
     output_file_path_train = os.path.join('data', 'features', 'train.csv')
     output_file_path_test = os.path.join('data', 'features', 'test.csv')
     os.makedirs(os.path.join('data', 'features'), exist_ok=True)
 
     # run processing
-    train(input_file_path_train, out_model_file_path, params_seed, params_c)
+    train(input_file_path_train, out_model_file_path, params_seed, params_n_estimators)
 
 
 

@@ -28,8 +28,21 @@ dvc run -n featurize \
 ## add train step
 ```
 dvc run -n train \
-          -p train.seed,train.c \
+          -p train.seed,train.n_estimators \
           -d src/train.py -d data/features \
           -o model.pkl \
           python src/train.py -i data/features -o model.pkl
+```
+
+## run reproduce experiment
+```dvc repro```
+
+## run evaluate
+```
+dvc run -n evaluate \
+          -d src/evaluate.py -d model.pkl -d data/features \
+          -M scores.json \
+          --plots-no-cache prc.json \
+          python src/evaluate.py -mfp model.pkl -ffp data/features \
+                -sfp scores.json -pfp prc.json
 ```
