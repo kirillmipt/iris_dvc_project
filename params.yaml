@@ -1,5 +1,5 @@
 prepare:
-  split: 0.21
+  split: 0.22
   seed: 20170428
 
 featurize:
@@ -8,4 +8,4 @@ featurize:
 
 train:
   seed: 20170428
-  n_estimators: 3
+  n_estimators: 4

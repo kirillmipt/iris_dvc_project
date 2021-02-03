@@ -10,17 +10,17 @@ prepare:
   params:
     params.yaml:
       prepare.seed: 20170428
-      prepare.split: 0.21
+      prepare.split: 0.22
   outs:
   - path: data/prepared
-    md5: b34829d534ee20356cd43e79e9ff7cc0.dir
+    md5: 2bb315ac64dc05f5234f6a74eaae3ba0.dir
     size: 2281
     nfiles: 2
 featurize:
   cmd: python src/featurization.py -i data/prepared -o data/features
   deps:
   - path: data/prepared
-    md5: b34829d534ee20356cd43e79e9ff7cc0.dir
+    md5: 2bb315ac64dc05f5234f6a74eaae3ba0.dir
     size: 2281
     nfiles: 2
   - path: src/featurization.py
@@ -32,14 +32,14 @@ featurize:
       featurize.multiplier_1: 2.1
   outs:
   - path: data/features
-    md5: 4c88a9f0f9f9ec4b7ce1faacdaa597bd.dir
+    md5: f776d1a5f9d37d5ee791edd23f825211.dir
     size: 2946
     nfiles: 2
 train:
   cmd: python src/train.py -i data/features -o model.pkl
   deps:
   - path: data/features
-    md5: 4c88a9f0f9f9ec4b7ce1faacdaa597bd.dir
+    md5: f776d1a5f9d37d5ee791edd23f825211.dir
     size: 2946
     nfiles: 2
   - path: src/train.py
@@ -47,30 +47,30 @@ train:
     size: 1491
   params:
     params.yaml:
-      train.n_estimators: 3
+      train.n_estimators: 4
       train.seed: 20170428
   outs:
   - path: model.pkl
-    md5: a2c54bbf14177bc0051a740f1a70cb49
-    size: 4323
+    md5: d32550912fea94e80cd7cd04e058a74f
+    size: 4068
 evaluate:
   cmd: python src/evaluate.py -mfp model.pkl -ffp data/features -sfp scores.json -pfp
     prc.json
   deps:
   - path: data/features
-    md5: 4c88a9f0f9f9ec4b7ce1faacdaa597bd.dir
+    md5: f776d1a5f9d37d5ee791edd23f825211.dir
     size: 2946
     nfiles: 2
   - path: model.pkl
-    md5: a2c54bbf14177bc0051a740f1a70cb49
-    size: 4323
+    md5: d32550912fea94e80cd7cd04e058a74f
+    size: 4068
   - path: src/evaluate.py
     md5: 7738e96f7d814535b89c187f54b47657
     size: 1928
   outs:
   - path: prc.json
-    md5: 34b67eb06ce43676d3be450ca366469c
-    size: 160
+    md5: 80564c2e0f84b9ea81b996a36ff86d0e
+    size: 131
   - path: scores.json
-    md5: 7645a25c80492bdb79e4faaa64d353bd
-    size: 27
+    md5: 0b1654dd82e47b728c2180c0dba1d976
+    size: 12
